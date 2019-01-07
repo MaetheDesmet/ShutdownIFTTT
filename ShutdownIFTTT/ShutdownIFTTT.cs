@@ -2,12 +2,13 @@
 using System.IO;
 using System.ServiceProcess;
 using System.Timers;
+using System.Configuration;
 
 namespace ShutdownIFTTT
 {
     public partial class ShutdownIFTTT : ServiceBase
     {
-        private string filePath = "C:\\Users\\desmetma\\Documents\\junk\\test.txt";
+        private string filePath = "";
         private Timer timer = new Timer();
 
         public ShutdownIFTTT()
@@ -18,6 +19,9 @@ namespace ShutdownIFTTT
         protected override void OnStart(string[] args)
         {
             System.Threading.Thread.Sleep(60000);
+
+            //fill in path in App.config before deploying
+            filePath = ConfigurationSettings.AppSettings.Get("filePath");
 
             if (File.Exists(filePath))
             {
