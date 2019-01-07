@@ -8,7 +8,7 @@ namespace ShutdownIFTTT
 {
     public partial class ShutdownIFTTT : ServiceBase
     {
-        private string filePath = "";
+        private string filePath;
         private Timer timer = new Timer();
 
         public ShutdownIFTTT()
@@ -18,17 +18,20 @@ namespace ShutdownIFTTT
 
         protected override void OnStart(string[] args)
         {
-            System.Threading.Thread.Sleep(60000);
-
             //fill in path in App.config before deploying
+#pragma warning disable CS0618 // Type or member is obsolete
             filePath = ConfigurationSettings.AppSettings.Get("filePath");
+            int sleep = int.Parse(ConfigurationSettings.AppSettings.Get("sleep")) * 1000;
+            int interval = int.Parse(ConfigurationSettings.AppSettings.Get("interval")) * 1000;
+#pragma warning restore CS0618 // Type or member is obsolete
+            System.Threading.Thread.Sleep(sleep);
 
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
             }
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
-            timer.Interval = 5000;  
+            timer.Interval = interval;  
             timer.Enabled = true;
         }
 
