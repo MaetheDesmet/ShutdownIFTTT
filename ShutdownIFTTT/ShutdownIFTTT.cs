@@ -5,12 +5,12 @@ using System.Timers;
 
 namespace ShutdownIFTTT
 {
-    public partial class Service1 : ServiceBase
+    public partial class ShutdownIFTTT : ServiceBase
     {
         private string filePath = "C:\\Users\\desmetma\\Documents\\junk\\test.txt";
         private Timer timer = new Timer();
 
-        public Service1()
+        public ShutdownIFTTT()
         {
             InitializeComponent();
         }

@@ -41,7 +41,7 @@
             //
             this.serviceInstaller1.Description = "Shutdown IFTTT service";
             this.serviceInstaller1.DisplayName = "ShutdownIFTTT";
-            this.serviceInstaller1.ServiceName = "Service1";
+            this.serviceInstaller1.ServiceName = "ShutdownIFTTT";
             // 
             // ProjectInstaller
             // 
